@@ -13,5 +13,5 @@ export function postgresMiddleware() {
 }
 
 export function postgres(ctx) {
-    return ctx.__postgres
+    return ctx._postgres
 }

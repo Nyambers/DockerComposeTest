@@ -1,6 +1,6 @@
-import { VEHICLES_CONSTANTS, VEHICLE_CONSTANTS } from '../constants/vehicles.js'
+import { VEHICLES_CONSTANTS } from '../constants/vehicles.js'
 import { postgres } from '../postgres.js'
-import { getVehicle, createVehicle, getallVehicles } from '../models/vehicles'
+import { getVehicle, createVehicle, getAllVehicles } from '../models/vehicles'
 import uuid from 'uuid/v4'
 
 const invalid_vehicle_type = {
@@ -56,7 +56,7 @@ export function routes(router) {
         })
 
         .get('/vehicle', async (ctx) => {
-            const vehicles = await getallVehicles(postgres(ctx))
+            const vehicles = await getAllVehicles(postgres(ctx))
             ctx.status = 200
             ctx.body = vehicles
         })

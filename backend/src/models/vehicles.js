@@ -40,7 +40,7 @@ export async function getVehicle(pg, id){
     return vehicle[0]
 }
 
-export async function getVehicle(pg){
+export async function getAllVehicles(pg){
     const vehicles = await pg.select('*')
         .from('vehicles')
 
