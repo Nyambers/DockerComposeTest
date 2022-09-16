@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: vehicles
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - ${PWD}/backend/create.sql:/docker-entrypoint-initdb.d/create.sql
+    ports:
+      - '5432:5432'
+    restart: always
+  
+  backend:
+    build:
+      context: $PWD/backend
+      dockerfile: $PWD/backend/dev.Dockerfile
+    environment:
+      POSTGRES_URI: uri
+      BACKEND_URI: backend_uri
+      BACKEND_PORT: 9000
+      DEBUG: swagger2-koa*
+    volumes: 
+      - ${PWD}/backend:/app
+    ports:
+      - 9000:9000
+    command: 'npm run start:dev'
+    restart: always
+
+  middleware:
+    build:
+      context: $PWD/middleware
+      dockerfile: $PWD/middleware/dev.Dockerfile
+    environment:
+      MIDDLEWARE_URI: middleware_uri
+      BACKEND_NAME: backend
+      BACKEND_PORT: 9000
+      DEBUG: swagger2-koa*
+    volumes: 
+      - ${PWD}/middleware:/app
+    ports:
+      - 9001:9001
+    command: 'npm run start:dev'
+    restart: always

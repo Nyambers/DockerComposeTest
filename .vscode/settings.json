@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "GraphQLTest",
+            "database": "vehicles",
+            "username": "postgres",
+            "password": "1234"
+        }
+    ]
+}
