@@ -14,7 +14,7 @@ export const routes = router => {
             const response = await axios.post(uri, payload)
 
             ctx.status = response.status !== 200 ? 400 : response.status
-            ctx.body = response !== 200 ? {
+            ctx.body = response.status !== 200 ? {
                 message: 'Failed to reach backend service',
                 status: response.status
             } : response.data

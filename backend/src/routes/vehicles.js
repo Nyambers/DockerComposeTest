@@ -1,4 +1,4 @@
-import { VEHICLES_CONSTANTS } from '../constants/vehicles.js'
+import { VEHICLE_CONSTANTS } from '../constants/vehicles.js'
 import { postgres } from '../postgres.js'
 import { getVehicle, createVehicle, getAllVehicles } from '../models/vehicles'
 import uuid from 'uuid/v4'
@@ -22,7 +22,7 @@ export function routes(router) {
         
             const data = {
                 ...ctx.request.body,
-                ...VEHICLES_CONSTANTS[ctx.request.body.vehicle_type],
+                ...VEHICLE_CONSTANTS[ctx.request.body.vehicle_type],
                 plate_number: uuid(),
                 created_at: new Date().getTime(),
                 updated_at: new Date().getTime()

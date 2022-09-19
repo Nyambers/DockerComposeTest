@@ -2,7 +2,7 @@ import knex from 'knex'
 
 export function postgresMiddleware() {
     const pg = new knex({
-        connection: 'postgres://postgres:1234@graphqlpractice_postgres_1:5432/vehicles',
+        connection: 'postgres://postgres:1234@postgres:5432/vehicles',
         client: 'pg'
     })
 
